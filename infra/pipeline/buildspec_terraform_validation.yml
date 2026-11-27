@@ -1,0 +1,35 @@
+# ============================================================================
+# CodeArts 构建脚本：Terraform 验证 + Checkov 安全扫描
+# ============================================================================
+# 此脚本在 CodeArts Build 中执行：
+# 1. 安装 Terraform 和 Checkov
+# 2. terraform init
+# 3. terraform plan（生成计划文件）
+# 4. terraform show -json（导出 JSON 格式计划）
+# 5. checkov（对计划文件做安全扫描）
+# 6. 上传验证结果到 OBS
+# ============================================================================
+
+version: 2.0
+
+phases:
+  pre_build:
+    commands:
+      - pip3 install checkov
+  build:
+    commands:
+      - |
+        # 安装 Terraform
+        curl -fsSL https://releases.hashicorp.com/terraform/1.5.7/terraform_1.5.7_linux_amd64.zip -o terraform.zip
+        unzip -o terraform.zip -d /usr/local/bin
+        chmod +x /usr/local/bin/terraform
+      - terraform init -backend-config=backend.tfvars
+      - terraform plan -out plan_output.plan
+      - terraform show -json plan_output.plan | jq '.' > plan_output.json
+      - checkov -f plan_output.json > checkov_output.txt
+      - checkov -f plan_output.json
+    finally:
+      - |
+        # 上传验证结果到 OBS
+        obsutil cp plan_output.json obs://${VALIDATION_RESULT_BUCKET}/
+        obsutil cp checkov_output.txt obs://${VALIDATION_RESULT_BUCKET}/

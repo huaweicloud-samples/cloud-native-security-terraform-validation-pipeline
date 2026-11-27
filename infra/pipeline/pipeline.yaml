@@ -1,0 +1,44 @@
+# ============================================================================
+# CodeArts Pipeline 流水线定义
+# ============================================================================
+# 四阶段流水线：Source → Validate → Approve → Deploy
+#
+# 部署方式：在 CodeArts 控制台创建流水线，选择此 YAML 文件导入。
+# ============================================================================
+
+name: terraform-validation-pipeline
+description: Terraform IaC 安全验证流水线
+
+stages:
+  # 阶段 1：源代码
+  - name: Source
+    actions:
+      - name: Source
+        type: REPO
+        repository: ${CODEARTS_REPOSITORY_NAME}
+        branch: main
+
+  # 阶段 2：Terraform 验证 + Checkov 安全扫描
+  - name: Validate
+    actions:
+      - name: Terraform_Validate
+        type: BUILD
+        build_script: buildspec_terraform_validation.yml
+        env:
+          VALIDATION_RESULT_BUCKET: ${VALIDATION_RESULT_BUCKET}
+
+  # 阶段 3：人工审批
+  - name: Approve-Reject
+    actions:
+      - name: Manual_Approval
+        type: APPROVAL
+        notify:
+          topic: ${SMN_TOPIC_NAME}
+          message: "请审查 Terraform 验证结果后决定是否继续部署"
+
+  # 阶段 4：Terraform 部署
+  - name: Deploy
+    actions:
+      - name: Terraform_Deploy
+        type: BUILD
+        build_script: buildspec_deploy.yml
