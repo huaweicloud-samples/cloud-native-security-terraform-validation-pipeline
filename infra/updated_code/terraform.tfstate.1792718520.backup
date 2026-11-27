@@ -1,0 +1,364 @@
+{
+  "version": 4,
+  "terraform_version": "1.9.8",
+  "serial": 12,
+  "lineage": "117e0cd8-b4e3-1292-9a31-74dd2ae5fba4",
+  "outputs": {},
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "huaweicloud_kms_key",
+      "name": "flow_logs_key",
+      "provider": "provider[\"registry.terraform.io/huaweicloud/huaweicloud\"]",
+      "instances": [
+        {
+          "status": "tainted",
+          "schema_version": 0,
+          "attributes": {
+            "creation_date": null,
+            "default_key_flag": null,
+            "domain_id": null,
+            "enterprise_project_id": null,
+            "expiration_time": null,
+            "id": "c774180f-7a06-4d8c-8054-1bb5eac2f670",
+            "is_enabled": true,
+            "key_algorithm": null,
+            "key_alias": "vpc-flow-logs-key",
+            "key_description": "KMS key for VPC Flow Logs encryption",
+            "key_id": null,
+            "key_state": null,
+            "key_usage": null,
+            "keystore_id": null,
+            "origin": null,
+            "pending_days": "7",
+            "region": null,
+            "rotation_enabled": null,
+            "rotation_interval": null,
+            "rotation_number": null,
+            "scheduled_deletion_date": null,
+            "tags": null
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "huaweicloud_lts_group",
+      "name": "vpc_flow_logs",
+      "provider": "provider[\"registry.terraform.io/huaweicloud/huaweicloud\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "created_at": "2026-10-23T09:19:16+08:00",
+            "enterprise_project_id": "",
+            "group_name": "vpc-flow-logs-group",
+            "id": "3fd5518d-6c3b-48ee-a991-09b52b01f789",
+            "region": "cn-north-4",
+            "tags": {},
+            "ttl_in_days": 7
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "huaweicloud_lts_stream",
+      "name": "vpc_flow_logs",
+      "provider": "provider[\"registry.terraform.io/huaweicloud/huaweicloud\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "created_at": "2026-10-23T09:19:17+08:00",
+            "enterprise_project_id": "0",
+            "filter_count": 0,
+            "group_id": "3fd5518d-6c3b-48ee-a991-09b52b01f789",
+            "id": "5ba1a044-4e71-45fd-ab2a-59790040ca36",
+            "is_favorite": false,
+            "region": "cn-north-4",
+            "stream_name": "vpc-flow-logs-group-stream",
+            "tags": {},
+            "ttl_in_days": 7
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "huaweicloud_lts_group.vpc_flow_logs"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "huaweicloud_networking_secgroup",
+      "name": "vpc_sg",
+      "provider": "provider[\"registry.terraform.io/huaweicloud/huaweicloud\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "created_at": "2026-10-23T01:19:16Z",
+            "delete_default_rules": true,
+            "description": "Security group for VPC resources",
+            "enterprise_project_id": "0",
+            "id": "c449aa4b-f4e8-40c5-9fcb-683d82bf6e4c",
+            "name": "vpc-security-group",
+            "region": "cn-north-4",
+            "rules": [],
+            "tags": {},
+            "timeouts": null,
+            "updated_at": "2026-10-23T01:19:16Z"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjo2MDAwMDAwMDAwMDB9fQ=="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "huaweicloud_vpc",
+      "name": "vpc",
+      "provider": "provider[\"registry.terraform.io/huaweicloud/huaweicloud\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "block_service_endpoint_states": null,
+            "cidr": "10.0.0.0/16",
+            "description": "",
+            "enhanced_local_route": "false",
+            "enterprise_project_id": "0",
+            "id": "486d9ca1-e1dd-4de5-9480-54aa338578a8",
+            "name": "myvpc",
+            "region": "cn-north-4",
+            "routes": [],
+            "secondary_cidr": null,
+            "secondary_cidrs": [],
+            "status": "OK",
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6MTgwMDAwMDAwMDAwfX0="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "huaweicloud_vpc_flow_log",
+      "name": "vpc_flow_logs",
+      "provider": "provider[\"registry.terraform.io/huaweicloud/huaweicloud\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "description": "",
+            "enabled": true,
+            "id": "15a48da0-763e-4242-bfff-b7a52535b18a",
+            "log_group_id": "3fd5518d-6c3b-48ee-a991-09b52b01f789",
+            "log_stream_id": "5ba1a044-4e71-45fd-ab2a-59790040ca36",
+            "name": "vpc-flow-logs",
+            "region": "cn-north-4",
+            "resource_id": "486d9ca1-e1dd-4de5-9480-54aa338578a8",
+            "resource_type": "vpc",
+            "status": "ACTIVE",
+            "traffic_type": "all"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "huaweicloud_lts_group.vpc_flow_logs",
+            "huaweicloud_lts_stream.vpc_flow_logs",
+            "huaweicloud_vpc.vpc"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "huaweicloud_vpc_subnet",
+      "name": "private_subnet1",
+      "provider": "provider[\"registry.terraform.io/huaweicloud/huaweicloud\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "availability_zone": "",
+            "cidr": "10.0.3.0/24",
+            "description": "",
+            "dhcp_domain_name": null,
+            "dhcp_enable": true,
+            "dhcp_ipv6_lease_time": null,
+            "dhcp_lease_time": "87600h",
+            "dns_list": [
+              "100.125.1.250",
+              "100.125.129.250"
+            ],
+            "gateway_ip": "10.0.3.1",
+            "id": "4568e73a-dadb-4752-b321-2df04ee65f9a",
+            "ipv4_subnet_id": "bd24631e-112c-47e8-9006-c3f8691e1ab1",
+            "ipv6_cidr": "",
+            "ipv6_enable": false,
+            "ipv6_gateway": "",
+            "ipv6_subnet_id": "",
+            "name": "Private_Subnet1",
+            "ntp_server_address": null,
+            "primary_dns": "100.125.1.250",
+            "region": "cn-north-4",
+            "secondary_dns": "100.125.129.250",
+            "subnet_id": "bd24631e-112c-47e8-9006-c3f8691e1ab1",
+            "tags": {},
+            "timeouts": null,
+            "vpc_id": "486d9ca1-e1dd-4de5-9480-54aa338578a8"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6NjAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "huaweicloud_vpc.vpc"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "huaweicloud_vpc_subnet",
+      "name": "private_subnet2",
+      "provider": "provider[\"registry.terraform.io/huaweicloud/huaweicloud\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "availability_zone": "",
+            "cidr": "10.0.4.0/24",
+            "description": "",
+            "dhcp_domain_name": null,
+            "dhcp_enable": true,
+            "dhcp_ipv6_lease_time": null,
+            "dhcp_lease_time": "87600h",
+            "dns_list": [
+              "100.125.1.250",
+              "100.125.129.250"
+            ],
+            "gateway_ip": "10.0.4.1",
+            "id": "a71ac18a-91a2-4232-9bcb-a5000a105697",
+            "ipv4_subnet_id": "6d28d71b-cc71-4ea2-98dc-1d627a54e2da",
+            "ipv6_cidr": "",
+            "ipv6_enable": false,
+            "ipv6_gateway": "",
+            "ipv6_subnet_id": "",
+            "name": "Private_Subnet2",
+            "ntp_server_address": null,
+            "primary_dns": "100.125.1.250",
+            "region": "cn-north-4",
+            "secondary_dns": "100.125.129.250",
+            "subnet_id": "6d28d71b-cc71-4ea2-98dc-1d627a54e2da",
+            "tags": {},
+            "timeouts": null,
+            "vpc_id": "486d9ca1-e1dd-4de5-9480-54aa338578a8"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6NjAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "huaweicloud_vpc.vpc"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "huaweicloud_vpc_subnet",
+      "name": "public_subnet1",
+      "provider": "provider[\"registry.terraform.io/huaweicloud/huaweicloud\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "availability_zone": "",
+            "cidr": "10.0.1.0/24",
+            "description": "",
+            "dhcp_domain_name": null,
+            "dhcp_enable": true,
+            "dhcp_ipv6_lease_time": null,
+            "dhcp_lease_time": "87600h",
+            "dns_list": [
+              "100.125.1.250",
+              "100.125.129.250"
+            ],
+            "gateway_ip": "10.0.1.1",
+            "id": "813be946-1cf4-415a-92f7-e6215f8e2092",
+            "ipv4_subnet_id": "b0c9b338-56fd-4b98-bdb7-80755b55b93c",
+            "ipv6_cidr": "",
+            "ipv6_enable": false,
+            "ipv6_gateway": "",
+            "ipv6_subnet_id": "",
+            "name": "Public_Subnet1",
+            "ntp_server_address": null,
+            "primary_dns": "100.125.1.250",
+            "region": "cn-north-4",
+            "secondary_dns": "100.125.129.250",
+            "subnet_id": "b0c9b338-56fd-4b98-bdb7-80755b55b93c",
+            "tags": {},
+            "timeouts": null,
+            "vpc_id": "486d9ca1-e1dd-4de5-9480-54aa338578a8"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6NjAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "huaweicloud_vpc.vpc"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "huaweicloud_vpc_subnet",
+      "name": "public_subnet2",
+      "provider": "provider[\"registry.terraform.io/huaweicloud/huaweicloud\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "availability_zone": "",
+            "cidr": "10.0.2.0/24",
+            "description": "",
+            "dhcp_domain_name": null,
+            "dhcp_enable": true,
+            "dhcp_ipv6_lease_time": null,
+            "dhcp_lease_time": "87600h",
+            "dns_list": [
+              "100.125.1.250",
+              "100.125.129.250"
+            ],
+            "gateway_ip": "10.0.2.1",
+            "id": "24916914-a7cb-4771-ae84-e1960566d261",
+            "ipv4_subnet_id": "c3efeaed-a575-456f-a4b2-760bd67e5ba7",
+            "ipv6_cidr": "",
+            "ipv6_enable": false,
+            "ipv6_gateway": "",
+            "ipv6_subnet_id": "",
+            "name": "Public_Subnet2",
+            "ntp_server_address": null,
+            "primary_dns": "100.125.1.250",
+            "region": "cn-north-4",
+            "secondary_dns": "100.125.129.250",
+            "subnet_id": "c3efeaed-a575-456f-a4b2-760bd67e5ba7",
+            "tags": {},
+            "timeouts": null,
+            "vpc_id": "486d9ca1-e1dd-4de5-9480-54aa338578a8"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6NjAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "huaweicloud_vpc.vpc"
+          ]
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}
